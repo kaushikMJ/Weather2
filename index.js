@@ -1,6 +1,14 @@
-const express= require("express");
-const https= require("https");
-const bodyParser= require("body-parser");
+//const express= require("express");
+import express from "express";
+//const https= require("https");
+import https from "https";
+//const bodyParser= require("body-parser");
+import bodyParser from "body-parser";
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
 const app= express();
 const port= 9000;
 
@@ -20,7 +28,7 @@ app.post("/", function(req, res){
         console.log(response.statusCode);
         response.on("data", function(data){
             console.log(typeof(data))
-            weatherData= JSON.parse(data);
+            var weatherData= JSON.parse(data);
             var temp= weatherData.main.temp;
             var description= weatherData.weather[0].description;
             var icon= weatherData.weather[0].icon;
